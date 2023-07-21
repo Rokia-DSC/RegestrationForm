@@ -1,5 +1,4 @@
-const { validationResult } = require("express-validator/check");
-
+const { validationResult } = require("express-validator");
 
 exports.getSignup = (req, res, next) => {
     let message = req.flash("error");
@@ -42,12 +41,13 @@ exports.postSignup = (req, res, next) => {
     bcrypt
       .hash(password, 12)
       .then((hashedPassword) => {
-        const user = new User({
-          email: email,
-          password: hashedPassword,
-          cart: { items: [] },
-        });
-        // return user.save();
+        //                         adding new user to db
+        // const user = new User({
+        //   email: email,
+        //   password: hashedPassword,
+        //   cart: { items: [] },
+        // });
+        // // return user.save();
       })
       .catch((err) => {
         const error = new Error(err);
