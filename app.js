@@ -3,7 +3,6 @@ const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-
 const app = express();
 
 const authRoutes = require("./routes/auth");
@@ -19,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use(authRoutes);
+
 
 app.listen(3000);
