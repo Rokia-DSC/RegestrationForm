@@ -1,15 +1,15 @@
-import { Client } from "pg";
+// import { Client } from "pg";
 
-const client = new Client({
-  user: 'postgres',
-  host : 'localhost',
-  database: 'formdb',
-  password : 'RDTMGP1',
-  port: 5432,
-})
+// const client = new Client({
+//   user: 'postgres',
+//   host : 'localhost',
+//   database: 'formdb',
+//   password : 'RDTMGP1',
+//   port: 5432,
+// })
 
 
-export default client ;
+// export default client ;
 
 
 

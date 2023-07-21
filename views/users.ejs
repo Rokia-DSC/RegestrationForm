@@ -1,0 +1,21 @@
+<%- include('includes/head.ejs')%>
+    <body>
+        <%- include('includes/navigation.ejs')%>
+            <main>
+                <% if ( Users.length> 0 ) { %>
+                    <div>
+                        <h1>Users</h1>
+                    </div>
+                    <% for (let user of Users) { %>
+                        <header>
+                            <ul>
+                                <li><%= user.userName %></li>
+                                </ul>
+                            </header>
+                            <% } %>
+                                <% }else{%>
+                                    <h1>There is no Users here</h1>
+                                    <%}%>
+                                    </main>
+
+                                    <%- include('includes/end.ejs')%>
