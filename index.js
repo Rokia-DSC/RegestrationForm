@@ -6,6 +6,7 @@ import {dirname,join} from 'path';
 import { fileURLToPath } from 'url';
 import usersRouter from './routes/users-routes.js';
 import path from 'path';
+import client from './db.js';
 
 dotenv.config();
 
@@ -21,6 +22,17 @@ app.use(cookieParser());
 app.use('/',express.static(path.join(__dirname,'public')));
 
 app.use('/api/users',usersRouter);
+
+
+client.connect() ;
+
+client.query(`Select * from formdb` , (err , res)=>{
+    if (err) throw err ;    
+    console.log("CONNECTED!!") ;
+    client.emit
+}) ;
+
+
 
 app.listen(PORT, () => {
     console.log(`Server started on PORT${PORT}`);
