@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const corsOptions = {credential: true, origin : process.env.URL || '*'};
 app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: false }));
