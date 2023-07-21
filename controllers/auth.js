@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 exports.getSignup = (req, res, next) => {
     let message = req.flash("error");
