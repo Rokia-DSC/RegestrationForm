@@ -1,17 +1,31 @@
 const express = require("express");
 
 const router = express.Router();
+const authController = require("../controllers/auth");
 
 const users = [];
 
-router.post("/addUsers", (req, res, next) => {
-  users.push({ userName: req.body.userName });
-  res.redirect("/");
-});
+router.get("/signup", authController.getSignup);
 
-router.get("/addUsers", (req, res, next) => {
-  res.render("addUsers", { docTitle: "addUsers" });
-});
+router.post(
+  "/signup",
+  [
+    check("email")
+      .isEmail()
+      .withMessage("Please enter a valid email.")
+      .normalizeEmail(),
+    body(
+      "password",
+      "Please enter a password with only numbers and text and at least 5 characters."
+    )
+      .isLength({ min: 5 })
+      .isAlphanumeric()
+      .trim(),
+    body("confirmPassword")
+      .trim()
+  ],
+  authController.postSignup
+);
 
 exports.routes = router;
-exports.users = users;
+
