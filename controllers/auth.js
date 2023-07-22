@@ -2,18 +2,18 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 
 const express = require('express');//add new user
-const { PrismaClient } = require('@prisma/client');//add new user
+const { PrismaClient } = require('@prisma/client');//add new user rokia modified
 
-const prisma = new PrismaClient();//add new user
+const prisma = new PrismaClient();//add new user rokia modified
 
-const app = express();//new
+const app = express();//add new user rokia modified
 
-app.get("/" , async (req, res) => {
+app.get("/" , async (req, res) => {//add new user rokia modified
   const allUsers = await prisma.UsersTBL.findMany();
   res.json(allUsers);
 });
 
-app.post("/",async (req,res) =>{
+app.post("/",async (req,res) =>{//add new user rokia modified
   const newUser = await prisma.UsersTBL.create({data : req.body});
   res.json(newUser);
 });
@@ -68,7 +68,7 @@ exports.postSignup = (req, res, next) => {
     bcrypt
       .hash(password, 12)
       .then((hashedPassword) => {
-// Create a new user
+// Create a new user rokia modified
     app.post('/users', async (req, res) => {
       const { fname,lname, email, role, password } = req.body
       const user = await prisma.UsersTBL.create({
