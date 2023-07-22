@@ -1,6 +1,23 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 
+const express = require('express');//add new user
+const { PrismaClient } = require('@prisma/client');//add new user
+
+const prisma = new PrismaClient();//add new user
+
+const app = express();//new
+
+app.get("/" , async (req, res) => {
+  const allUsers = await prisma.UsersTBL.findMany();
+  res.json(allUsers);
+});
+
+app.post("/",async (req,res) =>{
+  const newUser = await prisma.UsersTBL.create({data : req.body});
+  res.json(newUser);
+});
+
 exports.getSignup = (req, res, next) => {
     // let message = req.flash("error");
     // if (message.length > 0) {
@@ -13,7 +30,10 @@ exports.getSignup = (req, res, next) => {
       pageTitle: "Signup",
     //   errorMessage: message,
       oldInput: {
+        fname:"",
+        lname: "",
         email: "",
+        role: "",
         password: "",
         confirmPassword: "",
       },
@@ -22,7 +42,10 @@ exports.getSignup = (req, res, next) => {
 };
 
 exports.postSignup = (req, res, next) => {
+    const fname = req.body.fname;
+    const lname = req.body.lname; 
     const email = req.body.email;
+    const role = req.body.role;
     const password = req.body.password;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -32,7 +55,10 @@ exports.postSignup = (req, res, next) => {
         pageTitle: "Signup",
         errorMessage: errors.array()[0].msg,
         oldInput: {
+          fname: fname,
+          lname: lname,
           email: email,
+          role: role,
           password: password,
           confirmPassword: req.body.confirmPassword,
         },
@@ -42,6 +68,22 @@ exports.postSignup = (req, res, next) => {
     bcrypt
       .hash(password, 12)
       .then((hashedPassword) => {
+// Create a new user
+    app.post('/users', async (req, res) => {
+      const { fname,lname, email, role, password } = req.body
+      const user = await prisma.UsersTBL.create({
+        data: {
+          firstName,
+          lastName,
+          email,
+          role,
+          password
+        }
+      })
+
+      res.json(user)
+    })
+
         //                         adding new user to db
         // const user = new User({
         //   email: email,

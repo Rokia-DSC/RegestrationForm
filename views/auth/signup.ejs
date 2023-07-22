@@ -10,6 +10,24 @@
         <main>
             <form class="login-form" action="/signup" method="POST" novalidate>
                 <div>
+                    <label for="fname">First Name</label>
+                    <input 
+                        type="text" 
+                        name="fname" 
+                        id="fname" 
+                        value="<%= oldInput.fname %>">
+                </div>
+                <br>
+                <div>
+                    <label for="lname">Last Name</label>
+                    <input 
+                        type="text" 
+                        name="lname" 
+                        id="lname" 
+                        value="<%= oldInput.lname %>">
+                </div>
+                <br>
+                <div>
                     <label for="email">E-Mail</label>
                     <input 
                         type="email" 
@@ -17,6 +35,16 @@
                         id="email" 
                         value="<%= oldInput.email %>">
                 </div>
+                <br>
+                <div>
+                    <label for="role">Jop Title</label>
+                    <input 
+                        type="text" 
+                        name="Jtitle" 
+                        id="Jtitle" 
+                        value="<%= oldInput.Jtitle %>">
+                </div>
+                <br>
                 <div>
                     <label for="password">Password</label>
                     <input 
@@ -25,6 +53,7 @@
                         id="password" 
                         value="<%= oldInput.password %>">
                 </div>
+                <br>
                 <div>
                     <label for="confirmPassword">Confirm Password</label>
                     <input 
@@ -33,6 +62,7 @@
                         id="confirmPassword" 
                         value="<%= oldInput.confirmPassword %>">
                 </div>
+                <br>
                 <input type="hidden">
                 <button class="btn" type="submit">Sign up</button>
             </form>
